@@ -19,6 +19,7 @@ button, input, select { font: inherit; }
 .connection { display: flex; align-items: center; gap: 8px; color: #64748b; font-size: 12px; }
 .connection-dot { width: 8px; height: 8px; border-radius: 50%; background: #16a34a; box-shadow: 0 0 0 3px #dcfce7; }
 main { padding: 38px 0 64px; }
+.app-footer { padding: 16px 20px 24px; color: #94a3b8; font-size: 12px; text-align: center; }
 .page-heading { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; margin-bottom: 27px; }
 .eyebrow { margin: 0 0 7px; color: #64748b; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
 h1 { margin: 0; color: #15202b; font-size: clamp(26px, 4vw, 34px); letter-spacing: -.045em; line-height: 1.15; }
