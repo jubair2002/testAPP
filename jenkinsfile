@@ -1,0 +1,36 @@
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Deploy Laravel') {
+            steps {
+                sshagent(['jenkins-deploy-key']) {
+                    sh '''
+                        ssh -o StrictHostKeyChecking=no ubuntu@172.31.25.199 '
+                            set -e
+                            cd /home/ubuntu/testAPP
+
+                            echo "Pulling latest code..."
+                            git pull --ff-only origin main
+
+                            echo "Installing dependencies..."
+                            composer install --no-dev --optimize-autoloader --no-interaction
+
+                            echo "Clearing Laravel cache..."
+                            php artisan optimize:clear
+                            php artisan config:cache
+
+                            echo "Starting Laravel server..."
+                            if ! pgrep -f "[p]hp artisan serve --host=0.0.0.0 --port=8000" > /dev/null; then
+                                nohup php artisan serve --host=0.0.0.0 --port=8000 > /home/ubuntu/laravel-server.log 2>&1 &
+                            fi
+
+                            echo "Deployment completed!"
+                        '
+                    '''
+                }
+            }
+        }
+    }
+}
