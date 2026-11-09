@@ -22,6 +22,6 @@
         @endif
         @yield('content')
     </main>
-    <footer class="app-footer">Version 1.0</footer>
+    <footer class="app-footer">Version 2.0</footer>
 </body>
 </html>
